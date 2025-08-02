@@ -8,8 +8,6 @@ class FlutterApp extends StatelessWidget {
   final ValueNotifier<bool> _dark = ValueNotifier<bool>(true);
   final ValueNotifier<double> _widthFactor = ValueNotifier<double>(1.0);
 
-  FlutterApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -52,13 +50,13 @@ class FlutterApp extends StatelessWidget {
                   ],
                 ),
                 body: Center(
-                  child: SizedBox(
+                  child: Container(
                     width:
                         MediaQuery.of(context).size.width * _widthFactor.value,
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [VersiculoDeInicioScreen()],
+                      children: [AjustesPerfilMenuScreen()],
                     ),
                   ),
                 ),
@@ -71,167 +69,198 @@ class FlutterApp extends StatelessWidget {
   }
 }
 
-class VersiculoDeInicioScreen extends StatelessWidget {
-  const VersiculoDeInicioScreen({super.key});
+class AjustesPerfilMenuScreen extends StatelessWidget {
+  const AjustesPerfilMenuScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: 390,
-        height: 844,
-        decoration: const BoxDecoration(color: Color(0xFF000513)),
-        child: Stack(
-          children: [
-            // Fondo de estrellas personalizado
-            Positioned.fill(
-              child: Image.asset('lib/Imagenes/primeros_pasos/Fondo.png', fit: BoxFit.cover),
-            ),
-            // Botón de retroceso
-            Positioned(
-              left: 12,
-              top: 18,
-              child: Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: Colors.white,
-                size: 26,
-              ),
-            ),
-            // Botón de volumen
-            Positioned(
-              right: 12,
-              top: 18,
-              child: Icon(
-                Icons.volume_up_rounded,
-                color: Colors.white,
-                size: 26,
-              ),
-            ),
-            // Imagen central cuadrada personalizada
-            Positioned(
-              top: 70,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: Container(
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(12),
-                    image: const DecorationImage(
-                      image: AssetImage('lib/Imagenes/primeros_pasos/Logo.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            // Texto del versículo
-            Positioned(
-              left: 24,
-              right: 24,
-              top: 300,
-              child: Column(
-                children: [
-                  Text(
-                    '“Este es el pan bajado del cielo;\nno como el que comieron vuestros padres, y murieron; el que coma este pan vivirá para siempre..”',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Color(0xFFEFEFEF),
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
-                      height: 1.4,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  Text(
-                    'SAN JUAN 6,58',
-                    style: const TextStyle(
-                      color: Color(0xFFEFEFEF),
-                      fontSize: 15,
-                      fontFamily: 'Poppins',
-                      letterSpacing: 2.02,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // Barra de progreso
-            Positioned(
-              left: 39,
-              right: 39,
-              top: 610,
-              child: Container(
-                height: 4,
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.16),
-                  borderRadius: BorderRadius.circular(2),
-                ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    width: 65,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFD9D9D9),
-                      borderRadius: BorderRadius.circular(2),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            // Botón Continuar
-            Positioned(
-              left: 38,
-              right: 38,
-              bottom: 48,
-              child: SizedBox(
-                width: 314,
-                height: 48,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    elevation: 0,
-                    backgroundColor: Colors.transparent,
-                    shadowColor: Colors.transparent,
-                  ),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        begin: Alignment(1.00, -0.01),
-                        end: Alignment(-1, 0.01),
-                        colors: [
-                          Color(0xFF563FE4),
-                          Color(0xFFD7763F),
-                          Color(0xFFF04094),
-                        ],
-                      ),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: 314,
-                      height: 48,
-                      child: const Text(
-                        'Continuar',
-                        style: TextStyle(
-                          color: Color(0xFF000000),
-                          fontSize: 18,
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
         ),
+        title: const Text(
+          'Configuración',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 25,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        children: [
+          ListTile(
+            leading: const Icon(Icons.person_outline, color: Colors.white),
+            title: const Text(
+              'Editar Perfil',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.notifications_outlined,
+              color: Colors.white,
+            ),
+            title: const Text(
+              'Notificaciones',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.church_outlined, color: Colors.white),
+            title: const Text(
+              'Parroquias',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.card_membership_outlined,
+              color: Colors.white,
+            ),
+            title: const Text(
+              'Administrar Suscripción',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.help_outline, color: Colors.white),
+            title: const Text(
+              'Ayuda',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.language, color: Colors.white),
+            title: const Text(
+              'Idioma',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            trailing: const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.white,
+              size: 16,
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.description_outlined,
+              color: Colors.white,
+            ),
+            title: const Text(
+              'Condiciones del Servicio',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.privacy_tip_outlined,
+              color: Colors.white,
+            ),
+            title: const Text(
+              'Política de Privacidad',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.notifications_active_outlined,
+              color: Colors.white,
+            ),
+            title: const Text(
+              'Administrar Recordatorio',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout, color: Colors.white),
+            title: const Text(
+              'Cerrar Sesión',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.delete_outline, color: Colors.red),
+            title: const Text(
+              'Eliminar Cuenta',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            onTap: () {},
+          ),
+          const SizedBox(height: 16),
+          Center(
+            child: Text(
+              'Versión de la Aplicación: 1.0.0',
+              style: TextStyle(
+                color: Color(0xFFC2C2C2),
+                fontSize: 15,
+                fontFamily: 'Poppins',
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+        ],
       ),
     );
   }
