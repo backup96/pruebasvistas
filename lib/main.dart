@@ -83,46 +83,44 @@ class VersiculoDeInicioScreen extends StatelessWidget {
         decoration: const BoxDecoration(color: Color(0xFF000513)),
         child: Stack(
           children: [
-            // Fondo de estrellas
+            // Fondo de estrellas personalizado
             Positioned.fill(
-              child: Image.asset(
-                'lib/Imagenes/VersiculoDeInicioScreen.png',
-                fit: BoxFit.cover,
-              ),
+              child: Image.asset('lib/Imagenes/primeros_pasos/Fondo.png', fit: BoxFit.cover),
             ),
             // Botón de retroceso
             Positioned(
-              left: 16,
-              top: 16,
+              left: 12,
+              top: 18,
               child: Icon(
                 Icons.arrow_back_ios_new_rounded,
                 color: Colors.white,
-                size: 28,
+                size: 26,
               ),
             ),
             // Botón de volumen
             Positioned(
-              right: 16,
-              top: 16,
+              right: 12,
+              top: 18,
               child: Icon(
                 Icons.volume_up_rounded,
                 color: Colors.white,
-                size: 28,
+                size: 26,
               ),
             ),
-            // Imagen central
+            // Imagen central cuadrada personalizada
             Positioned(
-              top: 80,
+              top: 70,
               left: 0,
               right: 0,
               child: Center(
                 child: Container(
-                  width: 180,
-                  height: 180,
+                  width: 200,
+                  height: 200,
                   decoration: BoxDecoration(
+                    color: Colors.black,
                     borderRadius: BorderRadius.circular(12),
                     image: const DecorationImage(
-                      image: NetworkImage('https://i.imgur.com/0y8Ftya.png'),
+                      image: AssetImage('lib/Imagenes/primeros_pasos/Logo.png'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -137,7 +135,7 @@ class VersiculoDeInicioScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    '“Este es el pan bajado del cielo; no como el que comieron vuestros padres, y murieron; el que coma este pan vivirá para siempre..”',
+                    '“Este es el pan bajado del cielo;\nno como el que comieron vuestros padres, y murieron; el que coma este pan vivirá para siempre..”',
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Color(0xFFEFEFEF),
